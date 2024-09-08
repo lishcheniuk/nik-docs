@@ -1,0 +1,67 @@
+{
+    "expo": {
+        "name": "NIK Documents",
+        "slug": "nik-docs",
+        "description": "Search and upload documents to accounting devices",
+        "version": "1.0.0",
+        "platforms": ["android", "ios"],
+        "orientation": "portrait",
+        "icon": "./assets/images/icon.png",
+        "userInterfaceStyle": "light",
+        "backgroundColor": "#ffffff",
+        "primaryColor": "#ffffff",
+        "splash": {
+            "image": "./assets/images/splash.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#ffffff"
+        },
+        "ios": {
+            "supportsTablet": true,
+            "bundleIdentifier": "com.nikElektronika.nikDocs"
+        },
+        "android": {
+            "adaptiveIcon": {
+                "foregroundImage": "./assets/images/adaptive-icon.png",
+                "backgroundColor": "#ffffff"
+            },
+            "versionCode": 1,
+            "package": "com.nikElektronika.nikDocs",
+            "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE"]
+        },
+        "web": {
+            "favicon": "./assets/images/favicon.png"
+        },
+        "runtimeVersion": {
+            "policy": "appVersion"
+        },
+        "extra": {
+            "eas": {
+                "projectId": "4663b727-d8e3-459b-a042-f06d442f2eae"
+            }
+        },
+        "owner": "nik-elektronika",
+        "updates": {
+            "url": "https://u.expo.dev/4663b727-d8e3-459b-a042-f06d442f2eae"
+        },
+        "plugins": [
+            "expo-router",
+            [
+                "expo-camera",
+                {
+                    "recordAudioAndroid": false
+                }
+            ],
+            [
+                "expo-build-properties",
+                {
+                    "android": {
+                        "usesCleartextTraffic": true,
+                        "useLegacyPackaging": true
+                    }
+                }
+            ],
+            "expo-localization"
+        ],
+        "scheme": "nik-el"
+    }
+}
