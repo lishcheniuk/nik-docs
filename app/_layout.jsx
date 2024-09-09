@@ -44,6 +44,7 @@ export default function RootLayout() {
                     options={{
                         headerShown: true,
                         headerTitleAlign: "center",
+                        headerBackTitleVisible: false,
                     }}
                 />
             </Stack>

@@ -1,8 +1,8 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
 import { useAppLocale } from "../../hooks/useAppLocale";
 
-const { width: windowWidth } = Dimensions.get("window");
-const maskSize = 300;
+const { width: windowWidth, height } = Dimensions.get("window");
+const maskSize = height * 0.35;
 const borderMaskWidth = 6;
 
 export const CameraMask = () => {
