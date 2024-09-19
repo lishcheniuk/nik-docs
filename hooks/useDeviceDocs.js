@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Alert, Platform } from "react-native";
 import * as FileSystem from "expo-file-system";
 import * as Sharing from "expo-sharing";
@@ -15,34 +15,34 @@ export function useDeviceDocs(barcode) {
     const deviceNumber = barcode.substring(4, barcode.length - 4);
     const deviceYear = barcode.substring(barcode.length - 4);
 
-    useEffect(() => {
-        const fetchDeviceDocs = async () => {
-            const params = {
-                device_class: deviceClass,
-                device_number: deviceNumber,
-                device_type: getDeviceType(deviceClass),
-                format: "json",
-            };
-            try {
-                setStatus("loading");
-                const data = await getDeviceDocuments(params);
-                setDeviceDocs(data);
-                setStatus("success");
-            } catch (error) {
-                const rStatus = error.response?.status ?? 500;
-                if (rStatus >= 500) {
-                    Alert.alert(
-                        trans("Error"),
-                        trans("Something went wrong. Check your network connection and try again.")
-                    );
-                }
-                setStatus("error");
-            }
+    const fetchDeviceDocs = useCallback(async () => {
+        const params = {
+            device_class: deviceClass,
+            device_number: deviceNumber,
+            device_type: getDeviceType(deviceClass),
+            format: "json",
         };
-
-        fetchDeviceDocs();
+        try {
+            setStatus("loading");
+            const data = await getDeviceDocuments(params);
+            setDeviceDocs(data);
+            setStatus("success");
+        } catch (error) {
+            const rStatus = error.response?.status ?? 500;
+            if (rStatus >= 500) {
+                Alert.alert(
+                    trans("Error"),
+                    trans("Something went wrong. Check your network connection and try again.")
+                );
+            }
+            setStatus("error");
+        }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [deviceClass, deviceNumber]);
+
+    useEffect(() => {
+        fetchDeviceDocs();
+    }, [fetchDeviceDocs]);
 
     const getDirectoryUri = async () => {
         const dirDocumentsUri = `${FileSystem.documentDirectory}documents/`;
@@ -94,5 +94,12 @@ export function useDeviceDocs(barcode) {
         }
     };
 
-    return { deviceDocs, status, onDownloadDocument, deviceClass, deviceNumber, deviceYear };
+    return {
+        deviceDocs,
+        status,
+        onDownloadDocument,
+        deviceClass,
+        deviceNumber,
+        deviceYear,
+    };
 }

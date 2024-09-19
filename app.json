@@ -1,6 +1,6 @@
 {
     "expo": {
-        "name": "NIK Documents",
+        "name": "NIK documents",
         "slug": "nik-docs",
         "description": "Search and upload documents to accounting devices",
         "version": "1.0.0",
@@ -17,15 +17,14 @@
         },
         "ios": {
             "supportsTablet": true,
-            "bundleIdentifier": "com.nikElektronika.nikDocs"
+            "bundleIdentifier": "com.nikElektronika.nikDocuments"
         },
         "android": {
             "adaptiveIcon": {
                 "foregroundImage": "./assets/images/adaptive-icon.png",
                 "backgroundColor": "#ffffff"
             },
-            "versionCode": 1,
-            "package": "com.nikElektronika.nikDocs",
+            "package": "com.nikElektronika.nikDocuments",
             "permissions": ["CAMERA", "WRITE_EXTERNAL_STORAGE", "READ_EXTERNAL_STORAGE"]
         },
         "web": {

@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useAppLocale } from "../../hooks/useAppLocale";
 
 const { width: windowWidth, height } = Dimensions.get("window");
@@ -7,10 +8,11 @@ const borderMaskWidth = 6;
 
 export const CameraMask = () => {
     const { trans } = useAppLocale();
+    const insets = useSafeAreaInsets();
 
     return (
         <>
-            <View style={styles.titleWrap}>
+            <View style={[styles.titleWrap, { top: insets.top + 20 }]}>
                 <Text style={[styles.title, { fontSize: 22, fontWeight: "700" }]}>
                     {trans("Scanning")}
                 </Text>
@@ -79,7 +81,6 @@ export const CameraMask = () => {
 const styles = StyleSheet.create({
     titleWrap: {
         position: "absolute",
-        top: 70,
         left: windowWidth / 2 - 170,
         width: 340,
         alignItems: "center",
